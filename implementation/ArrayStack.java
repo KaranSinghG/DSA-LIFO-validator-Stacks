@@ -6,9 +6,12 @@ import interfaces.MyStack;
 public class ArrayStack<T> implements MyStack<T>{
 
     private T[] stack;
-    int top = -1;
+    private int top = -1;
 
     public ArrayStack(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Capacity must be greater than 0");
+        }
         stack = (T[]) new Object[capacity];
     }
 
