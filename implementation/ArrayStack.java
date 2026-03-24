@@ -8,11 +8,10 @@ public class ArrayStack<T> implements MyStack<T>{
     private T[] stack;
     private int top = -1;
 
+    @SuppressWarnings("unchecked")
     public ArrayStack(int capacity) {
-        if (capacity <= 0) {
-            throw new IllegalArgumentException("Capacity must be greater than 0");
-        }
-        stack = (T[]) new Object[capacity];
+        int intialCapacity = capacity > 0 ? capacity : 2;
+        stack = (T[]) new Object[intialCapacity];
     }
 
     @Override
@@ -23,6 +22,7 @@ public class ArrayStack<T> implements MyStack<T>{
         stack[++top] = value;
     }
 
+    @SuppressWarnings("unchecked")
     private void resize() {
         T[] newStack = (T[]) new Object[stack.length * 2];
         for (int i = 0; i < stack.length; i++) {
@@ -34,9 +34,7 @@ public class ArrayStack<T> implements MyStack<T>{
 
     @Override
     public T pop() throws EmptyStackException {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
+        if (isEmpty()) throw new EmptyStackException();
         T value = stack[top];
         stack[top--] = null;
         return value;
@@ -44,18 +42,13 @@ public class ArrayStack<T> implements MyStack<T>{
 
     @Override
     public T peek() throws EmptyStackException {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
+        if (isEmpty()) throw new EmptyStackException();
         return stack[top];
     }
 
     @Override
     public boolean isEmpty() {
-        if (top == -1) {
-            return true;
-        }
-        return false;
+        return top == -1;
     }
 
     @Override
