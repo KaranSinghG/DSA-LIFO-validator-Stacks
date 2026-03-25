@@ -3,9 +3,9 @@ package validator;
 import implementation.ArrayStack;
 
 public class SyntaxValidator {
-    ArrayStack<Character> stack = new ArrayStack<Character>();
 
     public boolean isBalanced(String expression) {
+        ArrayStack<Character> stack = new ArrayStack<Character>();
         for(char ch : expression.toCharArray()) {
             if (ch == '(' || ch == '{' || ch == '[') {
                 stack.push(ch);
