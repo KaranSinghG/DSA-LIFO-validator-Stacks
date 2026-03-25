@@ -14,6 +14,10 @@ public class ArrayStack<T> implements MyStack<T>{
         stack = (T[]) new Object[intialCapacity];
     }
 
+    public ArrayStack() {
+        this(2);
+    }
+
     @Override
     public void push(T value) {
         if  (stack.length == size()) {
